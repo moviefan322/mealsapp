@@ -17,8 +17,22 @@ export default function App() {
           translucent={true}
         />
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="MealCategories" component={CategoriesScreen} />
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: { backgroundColor: "#351401" },
+              headerTintColor: "white",
+              contentStyle: {
+                backgroundColor: "#3f2f25",
+              },
+            }}
+          >
+            <Stack.Screen
+              options={{
+                title: "All Categories",
+              }}
+              name="MealCategories"
+              component={CategoriesScreen}
+            />
             <Stack.Screen
               name="MealsOverview"
               component={MealsOverviewScreen}
@@ -33,6 +47,6 @@ export default function App() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "#24180f",
+    backgroundColor: "#351401",
   },
 });
