@@ -5,7 +5,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  MealCategories: undefined;
+  MealsOverview: { categoryId: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
 
 export default function App() {
   return (
@@ -36,6 +42,17 @@ export default function App() {
             <Stack.Screen
               name="MealsOverview"
               component={MealsOverviewScreen}
+              // options={({ route, navigation }) => {
+              //   if (!route.params) {
+              //     return {
+              //       title: "Meals Overview",
+              //     };
+              //   }
+              //   const catId = route.params.categoryId;
+              //   return {
+              //     title: catId,
+              //   };
+              // }}
             />
           </Stack.Navigator>
         </NavigationContainer>
