@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { View, Text, Pressable, StyleSheet, Platform } from "react-native";
+import { View, Text, Pressable, StyleSheet, Platform } from "react-native"
 
 interface CategoryGridTileProps {
   title: string;
   color: string;
+  onPress: () => void;
 }
 
 const handlePress = () => {
   console.log("CategoryGridTile pressed");
 };
 
-const CategoryGridTile = ({ title, color }: CategoryGridTileProps) => {
+const CategoryGridTile = ({ title, color, onPress }: CategoryGridTileProps) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
         android_ripple={{ color: "#cccccc" }}
-        onPress={() => console.log("Pressable clicked!")}
+        onPress={onPress}
         style={({ pressed }) => [
           styles.button,
           pressed && styles.buttonPressed,

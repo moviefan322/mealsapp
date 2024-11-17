@@ -3,9 +3,26 @@ import CategoryGridTile from "../components/CategoryGridTile";
 import { CATEGORIES } from "../data/dummyData";
 import Category from "../models/category";
 
-const CategoriesScreen = () => {
-  const renderCategory = (item: Category) => {
-    return <CategoryGridTile title={item.title} color={item.color} />;
+interface CategoriesScreenProps {
+  navigation: any;
+}
+
+const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
+  const renderCategory = (itemData: Category) => {
+    const pressHandler = () => {
+      navigation.navigate("MealsOverview", {
+        categoryId: itemData.id
+      });
+    };
+    return (
+      <View style={styles.container}>
+        <CategoryGridTile
+          title={itemData.title}
+          color={itemData.color}
+          onPress={pressHandler}
+        />
+      </View>
+    );
   };
   return (
     <FlatList
@@ -17,3 +34,11 @@ const CategoriesScreen = () => {
 };
 
 export default CategoriesScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#24180f",
+  },
+});
