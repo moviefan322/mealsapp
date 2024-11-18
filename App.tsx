@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import CategoriesScreen from "./screens/CategoriesScreen";
@@ -50,7 +50,17 @@ export default function App() {
               //   };
               // }}
             />
-            <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+            <Stack.Screen
+              name="MealDetail"
+              component={MealDetailScreen}
+              // options={{
+              //   headerRight: () => {
+              //     return (
+              //       <Button title='Tap me!' />
+              //     )
+              //   }
+              // }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
