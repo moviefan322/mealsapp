@@ -1,15 +1,35 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, View, Text, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
 import { RootStackParamList } from "./types/RootStackParamList";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
+  const DrawerNavigator = () => {
+    return (
+      <Drawer.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: "#351401" },
+          headerTintColor: "white",
+        }}
+      >
+        <Drawer.Screen
+          name="Categories"
+          component={CategoriesScreen}
+          options={{title: 'All Categories'}}
+        />
+        <Drawer.Screen name="Favorites" component={FavoritesScreen} />
+      </Drawer.Navigator>
+    );
+  };
   return (
     <View style={styles.root}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -29,11 +49,11 @@ export default function App() {
             }}
           >
             <Stack.Screen
+              name="Drawer"
+              component={DrawerNavigator}
               options={{
-                title: "All Categories",
+                headerShown: false,
               }}
-              name="MealCategories"
-              component={CategoriesScreen}
             />
             <Stack.Screen
               name="MealsOverview"
@@ -53,6 +73,9 @@ export default function App() {
             <Stack.Screen
               name="MealDetail"
               component={MealDetailScreen}
+              options={{
+                title: "About the Meal",
+              }}
               // options={{
               //   headerRight: () => {
               //     return (

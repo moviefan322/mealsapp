@@ -11,7 +11,7 @@ const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
   const renderCategory = (itemData: Category) => {
     const pressHandler = () => {
       navigation.navigate("MealsOverview", {
-        categoryId: itemData.id
+        categoryId: itemData.id,
       });
     };
     return (
@@ -39,5 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: "#351401",
   },
 });

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View, Text, Pressable, StyleSheet, Platform } from "react-native"
 
 interface CategoryGridTileProps {
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     margin: 16,
-    height: 150,
+    height: 140,
     borderRadius: 8,
     elevation: 4,
     backgroundColor: "white",
