@@ -4,14 +4,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
-
-type RootStackParamList = {
-  MealCategories: undefined;
-  MealsOverview: { categoryId: string };
-};
+import MealDetailScreen from "./screens/MealDetailScreen";
+import { RootStackParamList } from "./types/RootStackParamList";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
 
 export default function App() {
   return (
@@ -54,6 +50,7 @@ export default function App() {
               //   };
               // }}
             />
+            <Stack.Screen name="MealDetail" component={MealDetailScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

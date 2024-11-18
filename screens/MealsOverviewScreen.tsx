@@ -3,7 +3,6 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 
 import MealItem from "../components/MealItem";
 import { MEALS, CATEGORIES } from "../data/dummyData";
-import Meal from "../models/meal";
 
 interface MealsOverviewScreenProps {
   route: any;
@@ -37,6 +36,7 @@ const MealsOverviewScreen = ({
       duration: item.duration,
       complexity: item.complexity,
       affordability: item.affordability,
+      id: item.id,
     };
     return <MealItem {...mealItemProps} />;
   };

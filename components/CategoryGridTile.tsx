@@ -7,20 +7,16 @@ interface CategoryGridTileProps {
   onPress: () => void;
 }
 
-const handlePress = () => {
-  console.log("CategoryGridTile pressed");
-};
-
 const CategoryGridTile = ({ title, color, onPress }: CategoryGridTileProps) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
         android_ripple={{ color: "#cccccc" }}
-        onPress={onPress}
         style={({ pressed }) => [
           styles.button,
           pressed && styles.buttonPressed,
         ]}
+        onPress={onPress}
       >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>

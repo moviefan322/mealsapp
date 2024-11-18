@@ -6,6 +6,10 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types/RootStackParamList";
+import MealDetails from "./MealDetails";
 
 interface MealItemProps {
   title: string;
@@ -13,7 +17,13 @@ interface MealItemProps {
   duration: number;
   complexity: string;
   affordability: string;
+  id: string;
 }
+
+type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "MealDetail"
+>;
 
 const MealItem = ({
   title,
@@ -21,23 +31,33 @@ const MealItem = ({
   duration,
   complexity,
   affordability,
+  id,
 }: MealItemProps) => {
+  const navigation = useNavigation<NavigationProp>();
+
+  const handlePress = () => {
+    navigation.navigate("MealDetail", {
+      mealId: id,
+    });
+  };
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: "#ccc" }}
-        style={({ pressed }) => pressed ? styles.buttonPressed : null}
+        style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={handlePress}
       >
         <View>
           <View>
             <Image style={styles.image} source={{ uri: imageUrl }} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{duration}m</Text>
-            <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetails
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -71,16 +91,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     margin: 8,
-  },
-  details: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 8,
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 12,
   },
   buttonPressed: {
     opacity: 0.5,
