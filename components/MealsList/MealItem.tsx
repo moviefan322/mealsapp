@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/RootStackParamList";
-import MealDetails from "./MealDetails";
+import { RootStackParamList } from "../../types/RootStackParamList";
+import MealDetails from "../MealDetails";
 
 interface MealItemProps {
   title: string;
