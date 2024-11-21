@@ -3,12 +3,15 @@ import { SafeAreaView, StyleSheet, View, Text, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
+import { RootStackParamList } from "./types/RootStackParamList";
+import { Ionicons } from "@expo/vector-icons";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
+
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
-import { RootStackParamList } from "./types/RootStackParamList";
-import { Ionicons } from "@expo/vector-icons";
 import { FavoritesContextProvider } from "./store/context/favorites-context";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -58,7 +61,8 @@ export default function App() {
           backgroundColor="transparent"
           translucent={true}
         />
-        <FavoritesContextProvider>
+        {/* <FavoritesContextProvider> */}
+        <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator
               screenOptions={{
@@ -107,7 +111,8 @@ export default function App() {
               />
             </Stack.Navigator>
           </NavigationContainer>
-        </FavoritesContextProvider>
+          {/* </FavoritesContextProvider> */}
+        </Provider>
       </SafeAreaView>
     </View>
   );
